@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { getMenuItems } from '../services/wp-api'
+import MobileMenu from './MobileMenu';
 
 import mainMenuLogo from '../assets/images/main-menu-logo.png';
 import searchIcon from '../assets/icons/search.svg';
@@ -43,18 +44,18 @@ export default async function Header() {
           </div>
 
           <div className="flex gap-5 items-center">
-            <form className="hidden md:flex flex-1 max-w-[425px] items-center bg-transparent border border-search-border rounded-[30px] px-5 py-2 focus-within:border-white transition-colors group min-w-[400px]">
+            <form className="hidden md:flex flex-1 w-[250px] md:w-[425px] items-center bg-transparent border border-search-border rounded-[30px] px-5 py-2 focus-within:border-white transition-colors group">
                 <input
                 type="text"
                 placeholder="Search here . . ."
-                className="bg-transparent border-none text-search-text w-full outline-none placeholder:text-search-text text-sm font-medium"
+                className="bg-transparent border-none text-search-text w-full outline-none placeholder:text-search-text text-xs md:text-sm font-medium"
                 />
                 <button type="submit" className="ml-2 hover:opacity-70 transition-opacity">
                 <Image src={searchIcon} alt="Search" width={18} height={18} className="brightness-0 invert opacity-60 group-focus-within:opacity-100" />
                 </button>
             </form>
 
-            <div className="flex gap-4 items-center">
+            <div className="hidden md:flex gap-4 items-center">
                 {[
                 { icon: facebookIcon, alt: 'Facebook', href: '#' },
                 { icon: instagramIcon, alt: 'Instagram', href: '#' },
@@ -71,11 +72,13 @@ export default async function Header() {
                 </Link>
                 ))}
             </div>
+
+            <MobileMenu menuItems={menuItems} />
           </div>
         </div>
       </div>
 
-      <nav className="bg-nav-bg w-full h-[60px] shadow-[0_4px_6px_rgba(0,0,0,0.1)] relative z-50">
+      <nav className="hidden md:block bg-nav-bg w-full h-[60px] shadow-[0_4px_6px_rgba(0,0,0,0.1)] relative z-50">
         <div className="container mx-auto px-4 md:px-[5%] h-full flex items-center">
           <ul className="flex gap-8 lg:gap-12 list-none font-manrope font-bold text-white text-sm uppercase tracking-wider h-full items-center">
             {menuItems.map((item) => (
