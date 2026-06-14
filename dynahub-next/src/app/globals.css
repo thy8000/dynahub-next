@@ -13,6 +13,9 @@
   --color-search-border: var(--search-border);
   --color-search-text: var(--search-text);
   --color-accent: var(--accent);
+  --color-meta-blue: var(--meta-blue);
+  --color-dark-bg: var(--dark-bg);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -37,5 +40,7 @@ body {
     --search-border: #3A506B;
     --search-text: #8199B7;
     --accent: #F4796C;
+    --meta-blue: #BACCE1;
+    --dark-bg: #00050B;
   }
 }
