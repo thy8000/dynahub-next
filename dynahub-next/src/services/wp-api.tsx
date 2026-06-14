@@ -30,3 +30,33 @@ export async function fetchAPI(query: string, { variables }: { variables?: any }
   }
   return json.data;
 }
+
+/**
+ * Busca os itens do menu principal registrados no WordPress.
+ * Por padrão, busca o menu atribuído ao local 'PRIMARY'.
+ */
+export async function getMenuItems() {
+  const data = await fetchAPI(`
+    query GetMenuItems {
+      menuItems(where: {location: MAIN_MENU}, first: 100) {
+        nodes {
+          id
+          label
+          url
+          parentId
+          childItems {
+            nodes {
+              id
+              label
+              url
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  // Filtramos os nodes para retornar apenas aqueles que não possuem um pai (parentId === null)
+  // Isso evita que itens filhos apareçam duplicados no nível superior do menu.
+  return data?.menuItems?.nodes.filter((node: any) => node.parentId === null) || [];
+}

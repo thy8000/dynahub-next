@@ -1,4 +1,5 @@
 import { fetchAPI } from '../services/wp-api';
+import Header from '../components/Header';
 
 export default async function Home() {
   const data = await fetchAPI(`
@@ -15,7 +16,8 @@ export default async function Home() {
   const posts = data?.posts?.nodes || [];
 
   return (
-    <main className="min-h-screen p-24">
+    <main className="min-h-screen">
+      <Header />
       <h1 className="text-2xl font-bold mb-6">Últimos Posts do WordPress</h1>
       
       {posts.length > 0 ? (
