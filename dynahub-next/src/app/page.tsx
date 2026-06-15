@@ -2,6 +2,8 @@ import { fetchAPI } from '../services/wp-api';
 import Header from '../components/Header';
 import DoubleHeroGrid from '../components/DoubleHeroGrid';
 import CategoryGrid from '../components/CategoryGrid';
+import FeaturedPostGrid from '../components/FeaturedPostGrid';
+
 
 
 export default async function Home() {
@@ -23,6 +25,8 @@ export default async function Home() {
       <Header />
       <DoubleHeroGrid />
       <CategoryGrid />
+      <FeaturedPostGrid />
+
       <h1 className="text-2xl font-bold mb-6">Últimos Posts do WordPress</h1>
       
       {posts.length > 0 ? (

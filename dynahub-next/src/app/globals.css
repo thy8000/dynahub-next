@@ -16,6 +16,10 @@
   --color-meta-blue: var(--meta-blue);
   --color-dark-bg: var(--dark-bg);
   --color-category-border: var(--category-border);
+  --color-meta-text: var(--meta-text);
+  --color-social-bg: var(--social-bg);
+  --color-newsletter-icon: var(--newsletter-icon);
+  --color-meta-border: var(--meta-border);
 
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
@@ -44,5 +48,9 @@ body {
     --meta-blue: #BACCE1;
     --dark-bg: #00050B;
     --category-border: #DFDFDF;
+    --meta-text: #6D757F;
+    --social-bg: #E8F1F1;
+    --newsletter-icon: #7B96B7;
+    --meta-border: #B8C1CD;
   }
 }
