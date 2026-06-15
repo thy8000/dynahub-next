@@ -1,7 +1,6 @@
 import React from 'react';
 import CategoryCard from './CategoryCard';
 import Badge from './Badge';
-
 const categories = [
   {
     name: 'Action',
@@ -32,7 +31,7 @@ const categories = [
 const CategoryGrid: React.FC = () => {
   return (
     <div className="w-full max-w-[1320px] mx-auto py-10 px-4">
-      <div className="relative flex items-center mb-16 h-10">
+      <div className="relative flex items-center mb-16 h-10"> 
         <Badge text="Exciting Categories" />
         <div className="flex-1 h-[5px] border-t border-b border-category-border ml-[-1px] mt-[4px]" />
       </div>

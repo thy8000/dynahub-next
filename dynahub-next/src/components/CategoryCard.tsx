@@ -1,11 +1,6 @@
 import React from 'react';
 
-interface CategoryCardProps {
-  name: string;
-  image: string;
-}
-
-const CategoryCard: React.FC<CategoryCardProps> = ({ name, image }) => {
+const CategoryCard: React.FC<{ name: string; image: string; }> = ({ name, image }) => {
   return (
     <div className="relative w-[180px] h-[180px] shrink-0">
       <div className="w-full h-full rounded-[50px] overflow-hidden relative group cursor-pointer shadow-md transition-all duration-300 hover:shadow-xl">

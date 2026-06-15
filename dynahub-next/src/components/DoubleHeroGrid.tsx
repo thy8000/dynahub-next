@@ -1,6 +1,5 @@
 import React from 'react';
 import HeroPost from './HeroPost';
-
 const DoubleHeroGrid: React.FC = () => {
   const posts = [
     {

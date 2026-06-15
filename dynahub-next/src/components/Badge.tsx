@@ -1,10 +1,6 @@
 import React from 'react';
 
-interface BadgeProps {
-  text: string;
-}
-
-const Badge: React.FC<BadgeProps> = ({ text }) => {
+const Badge: React.FC<{ text: string; }> = ({ text }) => {
   return (
     <div className="relative shrink-0 z-10">
       <svg width="250" height="40" viewBox="0 0 250 40" fill="none" xmlns="http://www.w3.org/2000/svg">

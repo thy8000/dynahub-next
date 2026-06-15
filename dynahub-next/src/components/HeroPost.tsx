@@ -1,15 +1,6 @@
 import React from 'react';
 
-export interface HeroPostProps {
-  category: string;
-  title: string;
-  author: string;
-  date: string;
-  readTime: string;
-  imageUrl: string;
-}
-
-const HeroPost: React.FC<HeroPostProps> = ({
+const HeroPost: React.FC<{ category: string; title: string; author: string; date: string; readTime: string; imageUrl: string; }> = ({
   category,
   title,
   author,

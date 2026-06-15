@@ -4,12 +4,12 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import hamburguerIcon from '../assets/icons/hamburguer.svg';
-import closeIcon from '../assets/icons/close.svg';
-import mainMenuLogo from '../assets/images/main-menu-logo.png';
-import searchIcon from '../assets/icons/search.svg';
+import hamburguerIcon from '../assets/icons/hamburguer.svg'; 
+import closeIcon from '../assets/icons/close.svg'; 
+import mainMenuLogo from '../assets/images/main-menu-logo.png'; 
+import searchIcon from '../assets/icons/search.svg'; 
 
-interface MenuItem {
+interface MenuItem { 
   id: string;
   label: string;
   url: string;
@@ -17,7 +17,6 @@ interface MenuItem {
     nodes: MenuItem[];
   };
 }
-
 export default function MobileMenu({ menuItems }: { menuItems: MenuItem[] }) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -26,7 +25,7 @@ export default function MobileMenu({ menuItems }: { menuItems: MenuItem[] }) {
   return (
     <div className="md:hidden">
       <button onClick={toggleMenu} className="p-2 outline-none" aria-label="Abrir menu">
-        <Image src={hamburguerIcon} alt="Menu" width={32} height={32} className="brightness-0 invert" />
+        <Image src={hamburguerIcon} alt="Menu" width={32} height={32} className="brightness-0 invert" /> 
       </button>
 
       <div 
@@ -38,7 +37,7 @@ export default function MobileMenu({ menuItems }: { menuItems: MenuItem[] }) {
         
         <div className="flex justify-between items-center p-6 border-b border-white/10">
           <Image
-            src={mainMenuLogo}
+            src={mainMenuLogo} 
             alt="DynaHub Logo"
             height={40}
             className="h-[40px] w-auto object-contain"
@@ -55,7 +54,7 @@ export default function MobileMenu({ menuItems }: { menuItems: MenuItem[] }) {
               placeholder="Search here . . ."
               className="bg-transparent border-none text-search-text w-full outline-none placeholder:text-search-text text-sm font-medium"
             />
-            <button type="submit">
+            <button type="submit"> 
               <Image src={searchIcon} alt="Search" width={18} height={18} className="brightness-0 invert opacity-60" />
             </button>
           </form>

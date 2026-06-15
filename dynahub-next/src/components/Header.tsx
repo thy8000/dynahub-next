@@ -2,7 +2,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { getMenuItems } from '../services/wp-api'
 import MobileMenu from './MobileMenu';
-
 import mainMenuLogo from '../assets/images/main-menu-logo.png';
 import searchIcon from '../assets/icons/search.svg';
 import facebookIcon from '../assets/icons/facebook.svg';
@@ -10,7 +9,7 @@ import instagramIcon from '../assets/icons/instagram.svg';
 import linkedinIcon from '../assets/icons/linkedin.svg';
 import twitterIcon from '../assets/icons/twitter.svg';
 
-interface MenuItem {
+interface MenuItem { 
   id: string;
   label: string;
   url: string;
@@ -18,7 +17,6 @@ interface MenuItem {
     nodes: MenuItem[];
   };
 }
-
 export default async function Header() {
   let menuItems: MenuItem[] = [];
   try {
