@@ -1,6 +1,8 @@
 import { fetchAPI } from '../services/wp-api';
 import Header from '../components/Header';
 import DoubleHeroGrid from '../components/DoubleHeroGrid';
+import CategoryGrid from '../components/CategoryGrid';
+
 
 export default async function Home() {
   const data = await fetchAPI(`
@@ -20,6 +22,7 @@ export default async function Home() {
     <main className="min-h-screen">
       <Header />
       <DoubleHeroGrid />
+      <CategoryGrid />
       <h1 className="text-2xl font-bold mb-6">Últimos Posts do WordPress</h1>
       
       {posts.length > 0 ? (
