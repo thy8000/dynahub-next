@@ -24,6 +24,10 @@
   --color-divider: var(--divider);
   --color-border-light: var(--border-light);
 
+  --color-footer-bg: var(--footer-bg);
+  --color-footer-border: var(--footer-border);
+  --color-footer-muted: var(--footer-muted);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -58,5 +62,8 @@ body {
     --trending-bg: #0F172A;
     --divider: #253346;
     --border-light: #CFCFCF;
+    --footer-bg: #0C1622;
+    --footer-border: #202E3F;
+    --footer-muted: #7C91AA;
   }
 }

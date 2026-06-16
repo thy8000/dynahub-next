@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Manrope } from "next/font/google";
 import "./globals.css";
+import Footer from "../components/Footer";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -27,7 +28,10 @@ export default function RootLayout({
       lang="pt-BR"
       className={`${inter.variable} ${manrope.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
