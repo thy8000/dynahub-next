@@ -60,3 +60,23 @@ export async function getMenuItems() {
   // Isso evita que itens filhos apareçam duplicados no nível superior do menu.
   return data?.menuItems?.nodes.filter((node: any) => node.parentId === null) || [];
 }
+
+export async function getSocialShare() {
+  const data = await fetchAPI(`
+    query GetSocialShare {
+      opEsGerais {
+        themeOptions {
+          socialShare {
+            facebook
+            fieldGroupName
+            instagram
+            linkedin
+            twitter
+          }
+        }
+      }
+    }
+  `);
+
+  return data?.opEsGerais?.themeOptions?.socialShare || null;
+}

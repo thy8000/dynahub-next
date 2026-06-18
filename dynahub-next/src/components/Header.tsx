@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { getMenuItems } from '../services/wp-api'
+import { getMenuItems, getSocialShare } from '../services/wp-api'
 import MobileMenu from './MobileMenu';
 import mainMenuLogo from '../assets/images/main-menu-logo.png';
 import searchIcon from '../assets/icons/search.svg';
@@ -17,12 +17,30 @@ interface MenuItem {
     nodes: MenuItem[];
   };
 }
+
+interface SocialShare {
+  facebook?: string | null;
+  instagram?: string | null;
+  linkedin?: string | null;
+  twitter?: string | null;
+}
+
+const socialIcons: Record<string, { icon: any; alt: string }> = {
+  facebook: { icon: facebookIcon, alt: 'Facebook' },
+  instagram: { icon: instagramIcon, alt: 'Instagram' },
+  linkedin: { icon: linkedinIcon, alt: 'LinkedIn' },
+  twitter: { icon: twitterIcon, alt: 'Twitter' },
+};
+
 export default async function Header() {
   let menuItems: MenuItem[] = [];
+  let socialShare: SocialShare | null = null;
   try {
-    menuItems = await getMenuItems();
+    const results = await Promise.all([getMenuItems(), getSocialShare()]);
+    menuItems = results[0];
+    socialShare = results[1];
   } catch (error) {
-    console.error('Erro ao carregar menu:', error);
+    console.error('Erro ao carregar dados:', error);
   }
 
   return (
@@ -54,21 +72,21 @@ export default async function Header() {
             </form>
 
             <div className="hidden md:flex gap-4 items-center">
-                {[
-                { icon: facebookIcon, alt: 'Facebook', href: '#' },
-                { icon: instagramIcon, alt: 'Instagram', href: '#' },
-                { icon: linkedinIcon, alt: 'LinkedIn', href: '#' },
-                { icon: twitterIcon, alt: 'Twitter', href: '#' },
-                ].map((social, idx) => (
-                <Link 
-                    key={idx} 
-                    href={social.href} 
-                    target="_blank" 
-                    className="hover:scale-110 transition-transform opacity-80 hover:opacity-100"
-                >
-                    <Image src={social.icon} alt={social.alt} width={20} height={20} className="w-[20px] h-[20px]" />
-                </Link>
-                ))}
+                {socialShare && Object.entries(socialIcons).map(([key, { icon, alt }]) => {
+                  const url = socialShare[key as keyof SocialShare];
+                  if (!url) return null;
+                  return (
+                    <Link 
+                      key={key} 
+                      href={url} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="hover:scale-110 transition-transform opacity-80 hover:opacity-100"
+                    >
+                      <Image src={icon} alt={alt} width={20} height={20} className="w-[20px] h-[20px]" />
+                    </Link>
+                  );
+                })}
             </div>
 
             <MobileMenu menuItems={menuItems} />
