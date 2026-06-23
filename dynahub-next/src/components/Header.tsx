@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { getMenuItems, getSocialShare } from '../services/wp-api'
+import { getMenuItems, getSocialShare, getHeaderLogo, getSiteName } from '../services/wp-api'
 import MobileMenu from './MobileMenu';
-import mainMenuLogo from '../assets/images/main-menu-logo.png';
+
 import searchIcon from '../assets/icons/search.svg';
 import facebookIcon from '../assets/icons/facebook.svg';
 import instagramIcon from '../assets/icons/instagram.svg';
@@ -16,6 +16,19 @@ interface MenuItem {
   childItems?: {
     nodes: MenuItem[];
   };
+}
+
+interface HeaderLogo {
+  logoImage: {
+    node: {
+      sourceUrl: string;
+      altText: string;
+      mediaDetails: {
+        width: number;
+        height: number;
+      };
+    };
+  } | null;
 }
 
 interface SocialShare {
@@ -35,13 +48,18 @@ const socialIcons: Record<string, { icon: any; alt: string }> = {
 export default async function Header() {
   let menuItems: MenuItem[] = [];
   let socialShare: SocialShare | null = null;
+  let headerLogo: HeaderLogo | null = null;
+  let siteName = 'DynaHub';
   try {
-    const results = await Promise.all([getMenuItems(), getSocialShare()]);
+    const results = await Promise.all([getMenuItems(), getSocialShare(), getHeaderLogo(), getSiteName()]);
     menuItems = results[0];
     socialShare = results[1];
+    headerLogo = results[2];
+    siteName = results[3];
   } catch (error) {
     console.error('Erro ao carregar dados:', error);
   }
+  const logoNode = headerLogo?.logoImage?.node;
 
   return (
     <header className="w-full flex flex-col font-inter">
@@ -49,13 +67,20 @@ export default async function Header() {
         <div className="container mx-auto px-4 md:px-[5%] h-[100px] flex justify-between items-center gap-8">
           <div className="flex-shrink-0">
             <Link href="/" className="block">
-              <Image
-                src={mainMenuLogo}
-                alt="DynaHub Logo"
-                height={50}
-                className="h-[50px] w-auto object-contain"
-                priority
-              />
+              {logoNode ? (
+                <Image
+                  src={logoNode.sourceUrl}
+                  alt={logoNode.altText || 'Site Logo'}
+                  width={logoNode.mediaDetails.width}
+                  height={logoNode.mediaDetails.height}
+                  className="h-[50px] w-auto object-contain"
+                  priority
+                />
+              ) : (
+                <span className="text-white text-xl md:text-2xl font-bold">
+                  {siteName}
+                </span>
+              )}
             </Link>
           </div>
 

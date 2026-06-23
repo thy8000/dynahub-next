@@ -80,3 +80,38 @@ export async function getSocialShare() {
 
   return data?.opEsGerais?.themeOptions?.socialShare || null;
 }
+
+export async function getHeaderLogo() {
+  const data = await fetchAPI(`
+    query GetLogoImage {
+      opEsGerais {
+        themeOptions {
+          headerLogo {
+            logoImage {
+              node {
+                sourceUrl(size: MEDIUM)
+                altText
+                mediaDetails {
+                  width
+                  height
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  `);
+  return data?.opEsGerais?.themeOptions?.headerLogo || null;
+}
+
+export async function getSiteName() {
+  const data = await fetchAPI(`
+    query GetSiteName {
+      generalSettings {
+        title
+      }
+    }
+  `);
+  return data?.generalSettings?.title || 'DynaHub';
+}
